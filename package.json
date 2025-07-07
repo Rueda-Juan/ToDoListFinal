@@ -4,7 +4,8 @@
   "description": "proyecto final de el curso cilsa fullstacks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node Backend/bd/setup.js"
   },
   "repository": {
     "type": "git",

@@ -4,7 +4,7 @@
   "description": "proyecto final de el curso cilsa fullstacks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "node Backend/bd/setup.js",
     "dev": "nodemon Backend/index.js"
   },
@@ -24,6 +24,7 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "jest": "^30.0.4",
     "nodemon": "^3.1.10"
   }
 }

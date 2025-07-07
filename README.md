@@ -38,3 +38,7 @@ res:
   "correo": "juanchi@example.com",
   "nombre": "Juanchi"
 }
+
+## como correr la aplicacion?
+
+para que funcione la aplicacion web, se deben abrir 2 terminales, una, situado en la carpeta "/ToDoListFinal", correr el comando "npm run dev", y en la otra terminal correr el mismo comando pero situado en la carpeta "/ToDoListFinal/Frontend"

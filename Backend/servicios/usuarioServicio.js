@@ -4,41 +4,46 @@ const { cargarSQLPorNombre } = require("../utils/sqlLoader");
 
 const rutaUsuarioSQL = path.resolve(__dirname, "..", "consultas", "usuario.sql");
 
-// Crear usuario
-function crearUsuario(correo, nombre, contraseña) {
-  const sql = cargarSQLPorNombre(rutaUsuarioSQL, "crear_usuario");
+// Helpers genéricos
+function runQuery(sql, params) {
   return new Promise((resolve, reject) => {
-    db.run(sql, [correo, nombre, contraseña], function (err) {
+    db.run(sql, params, function (err) {
       if (err) reject(err);
-      else resolve(this.lastID);
+      else resolve(this);
     });
   });
 }
 
-// Obtener usuario por id
-function obtenerUsuario(id_usuario) {
-  const sql = cargarSQLPorNombre(rutaUsuarioSQL, "obtener_usuario");
+function getQuery(sql, params) {
   return new Promise((resolve, reject) => {
-    db.get(sql, [id_usuario], (err, row) => {
+    db.get(sql, params, (err, row) => {
       if (err) reject(err);
       else resolve(row);
     });
   });
+}
+
+// Crear usuario
+async function crearUsuario(correo, nombre, contraseña) {
+  const sql = cargarSQLPorNombre(rutaUsuarioSQL, "crear_usuario");
+  const result = await runQuery(sql, [correo, nombre, contraseña]);
+  return result.lastID;
+}
+
+// Obtener usuario por ID
+async function obtenerUsuario(id_usuario) {
+  const sql = cargarSQLPorNombre(rutaUsuarioSQL, "obtener_usuario");
+  return await getQuery(sql, [id_usuario]);
 }
 
 // Obtener usuario por correo
-function obtenerUsuarioPorCorreo(correo) {
+async function obtenerUsuarioPorCorreo(correo) {
   const sql = cargarSQLPorNombre(rutaUsuarioSQL, "obtener_usuario_por_correo");
-  return new Promise((resolve, reject) => {
-    db.get(sql, [correo], (err, row) => {
-      if (err) reject(err);
-      else resolve(row);
-    });
-  });
+  return await getQuery(sql, [correo]);
 }
 
-// Actualizar usuario (nombre y/o contraseña)
-function actualizarUsuario(id_usuario, nombre = null, contraseña = null) {
+// Actualizar usuario
+async function actualizarUsuario(id_usuario, nombre = null, contraseña = null) {
   const updates = [];
   const params = [];
 
@@ -46,32 +51,26 @@ function actualizarUsuario(id_usuario, nombre = null, contraseña = null) {
     updates.push("nombre = ?");
     params.push(nombre);
   }
+
   if (contraseña) {
     updates.push("contraseña = ?");
     params.push(contraseña);
   }
-  if (updates.length === 0) return Promise.resolve(false);
+
+  if (updates.length === 0) return false;
 
   params.push(id_usuario);
   const sql = `UPDATE Usuario SET ${updates.join(", ")} WHERE id_usuario = ?`;
+  const result = await runQuery(sql, params);
 
-  return new Promise((resolve, reject) => {
-    db.run(sql, params, function (err) {
-      if (err) reject(err);
-      else resolve(this.changes > 0);
-    });
-  });
+  return result.changes > 0;
 }
 
 // Eliminar usuario
-function eliminarUsuario(id_usuario) {
+async function eliminarUsuario(id_usuario) {
   const sql = cargarSQLPorNombre(rutaUsuarioSQL, "eliminar_usuario");
-  return new Promise((resolve, reject) => {
-    db.run(sql, [id_usuario], function (err) {
-      if (err) reject(err);
-      else resolve(this.changes > 0);
-    });
-  });
+  const result = await runQuery(sql, [id_usuario]);
+  return result.changes > 0;
 }
 
 module.exports = {

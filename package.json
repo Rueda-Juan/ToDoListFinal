@@ -1,0 +1,22 @@
+{
+  "name": "todolistfinal",
+  "version": "1.0.0",
+  "description": "proyecto final de el curso cilsa fullstacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rueda-Juan/ToDoListFinal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rueda-Juan/ToDoListFinal/issues"
+  },
+  "homepage": "https://github.com/Rueda-Juan/ToDoListFinal#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Rueda-Juan/ToDoListFinal#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7"
   }
 }

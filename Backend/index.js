@@ -7,8 +7,8 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-const usuarioRuta = require("./Rutas/usuarioRuta");
-const tareaRuta = require("./Rutas/tareaRuta");
+const usuarioRuta = require("./Routes/usuarioRuta");
+const tareaRuta = require("./Routes/tareaRuta");
 
 app.use("/usuarios", usuarioRuta);
 app.use("/tareas", tareaRuta);

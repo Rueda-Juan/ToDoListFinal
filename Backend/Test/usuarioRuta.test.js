@@ -13,6 +13,11 @@ jest.mock("../servicios/usuarioServicio", () => ({
 
 const usuarioServicio = require("../servicios/usuarioServicio");
 
+// App de prueba
+const app = express();
+app.use(express.json());
+app.use("/usuario", usuarioRouter);
+
 //TEST 1: Registrar Exitoso de Usuario
 test("POST /usuario/register - crea usuario con éxito", async () => {
     usuarioServicio.crearUsuario.mockResolvedValue(1);
@@ -155,7 +160,3 @@ test("Eliminar usuario - no encontrado", async () => {
 });
 
 
-// App de prueba
-const app = express();
-app.use(express.json());
-app.use("/usuario", usuarioRouter);

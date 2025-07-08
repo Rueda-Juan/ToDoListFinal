@@ -28,25 +28,42 @@ function Login() {
   };
 
   return (
-    <form onSubmit={manejarSubmit}>
-      <h2>Iniciar sesión</h2>
-      <input
-        type="email"
-        placeholder="Correo"
-        value={correo}
-        onChange={(e) => setCorreo(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)}
-        required
-      />
-      <button type="submit">Entrar</button>
-      <p onClick={() => navigate("/register")}>¿No tienes cuenta? Regístrate</p>
-    </form>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
+        <h2 className="text-center mb-4">Iniciar Sesión</h2>
+        <form onSubmit={manejarSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Correo electrónico</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="correo@ejemplo.com"
+              value={correo}
+              onChange={(e) => setCorreo(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Contraseña</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Contraseña"
+              value={contraseña}
+              onChange={(e) => setContraseña(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">Entrar</button>
+        </form>
+        <p className="text-center mt-3 mb-0">
+          ¿No tienes cuenta?{" "}
+          <button onClick={() => navigate("/register")} className="btn btn-link p-0 m-0 align-baseline">
+            Regístrate
+          </button>
+        </p>
+      </div>
+    </div>
   );
 }
 

@@ -28,32 +28,53 @@ function Register() {
   };
 
   return (
-    <form onSubmit={manejarSubmit}>
-      <h2>Registrarse</h2>
-      <input
-        type="email"
-        placeholder="Correo"
-        value={correo}
-        onChange={(e) => setCorreo(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Nombre"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)}
-        required
-      />
-      <button type="submit">Registrarse</button>
-      <p onClick={() => navigate("/login")}>¿Ya tienes cuenta? Inicia sesión</p>
-    </form>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
+        <h2 className="text-center mb-4">Registrarse</h2>
+        <form onSubmit={manejarSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Correo electrónico</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="correo@ejemplo.com"
+              value={correo}
+              onChange={(e) => setCorreo(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Nombre</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Tu nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Contraseña</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Contraseña"
+              value={contraseña}
+              onChange={(e) => setContraseña(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-success w-100">Registrarse</button>
+        </form>
+        <p className="text-center mt-3 mb-0">
+          ¿Ya tienes cuenta?{" "}
+          <button onClick={() => navigate("/login")} className="btn btn-link p-0 m-0 align-baseline">
+            Inicia sesión
+          </button>
+        </p>
+      </div>
+    </div>
   );
 }
 

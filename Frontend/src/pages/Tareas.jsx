@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TaskCard from "./TaskCard";
+import Sidebar from "./Sidebar";
+import CrearTareaModal from "./CrearTareaModal";
 
 function Tareas() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const [tareas, setTareas] = useState([]);
   const [titulo, setTitulo] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const [mostrarModal, setMostrarModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +38,7 @@ function Tareas() {
       if (res.ok) {
         setTitulo("");
         setDescripcion("");
+        setMostrarModal(false);
         cargarTareas();
       } else {
         alert("Error al crear tarea");
@@ -72,40 +76,45 @@ function Tareas() {
   };
 
   return (
-    <div>
-      <h2>Hola, {usuario.nombre}</h2>
-      <button onClick={cerrarSesion}>Cerrar sesión</button>
+    <div className="container-fluid">
+      <div className="row">
+        <Sidebar usuario={usuario} cerrarSesion={cerrarSesion} />
+        <div className="col-12 col-md-9 col-lg-10 py-4 px-md-5 position-relative bg-white">
+          <h3 className="mb-4 fw-semibold">📋 Mis tareas</h3>
+          <div className="row g-4">
+            {tareas.map((tarea) => (
+              <div key={tarea.id_tarea} className="col-12 col-md-6">
+                <TaskCard
+                  tarea={tarea}
+                  onToggle={marcarComoCompletada}
+                  onDelete={eliminarTarea}
+                />
+              </div>
+            ))}
+          </div>
 
-      <form onSubmit={crearTarea}>
-        <h3>Agregar nueva tarea</h3>
-        <input
-          type="text"
-          placeholder="Título"
-          value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Descripción"
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-        ></textarea>
-        <button type="submit">Crear tarea</button>
-      </form>
+          <button
+            className="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 shadow-lg"
+            style={{ width: "60px", height: "60px", fontSize: "28px", zIndex: 1050 }}
+            onClick={() => setMostrarModal(true)}
+          >
+            +
+          </button>
 
-      <h3>Mis tareas</h3>
-      <ul>
-        {tareas.map((tarea) => (
-          <TaskCard
-            key={tarea.id_tarea}
-            tarea={tarea}
-            onToggle={marcarComoCompletada}
-            onDelete={eliminarTarea}
+          <CrearTareaModal
+            mostrar={mostrarModal}
+            onClose={() => setMostrarModal(false)}
+            onSubmit={crearTarea}
+            titulo={titulo}
+            setTitulo={setTitulo}
+            descripcion={descripcion}
+            setDescripcion={setDescripcion}
           />
-        ))}
-      </ul>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default Tareas;
+

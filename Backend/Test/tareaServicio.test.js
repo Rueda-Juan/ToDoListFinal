@@ -11,7 +11,7 @@ const db = require('../bd/database');
 const { cargarSQLPorNombre } = require('../utils/sqlLoader');
 const tareaservicio = require('../servicios/tareaservicio');
 
-// TEST: 6 TEST
+// TEST: 6 TEST EN TOTAL
 describe('tareaservicio', () => {
   beforeEach(() => {
     jest.clearAllMocks();

@@ -4,17 +4,17 @@ function CrearTareaModal({ mostrar, onClose, onSubmit, titulo, setTitulo, descri
   return (
     <div className="modal d-block fade show" tabIndex="-1" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
       <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content shadow">
+        <div className="modal-content glass shadow">
           <div className="modal-header">
             <h5 className="modal-title">Crear nueva tarea</h5>
-            <button type="button" className="btn-close" onClick={onClose}></button>
+            <button type="button" className="btn-close glass" onClick={onClose}><i class="bi bi-x"></i></button>
           </div>
           <div className="modal-body">
             <form onSubmit={onSubmit}>
               <div className="mb-3">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control glass"
                   placeholder="Título"
                   value={titulo}
                   onChange={(e) => setTitulo(e.target.value)}
@@ -23,17 +23,17 @@ function CrearTareaModal({ mostrar, onClose, onSubmit, titulo, setTitulo, descri
               </div>
               <div className="mb-3">
                 <textarea
-                  className="form-control"
+                  className="form-control glass"
                   placeholder="Descripción"
                   value={descripcion}
                   onChange={(e) => setDescripcion(e.target.value)}
                 ></textarea>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-outline-secondary" onClick={onClose}>
+                <button type="button" className="btn glass" onClick={onClose}>
                   Cancelar
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn glass">
                   Crear tarea
                 </button>
               </div>

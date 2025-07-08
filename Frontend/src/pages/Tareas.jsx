@@ -79,8 +79,9 @@ function Tareas() {
     <div className="container-fluid">
       <div className="row">
         <Sidebar usuario={usuario} cerrarSesion={cerrarSesion} />
-        <div className="col-12 col-md-9 col-lg-10 py-4 px-md-5 position-relative bg-white">
-          <h3 className="mb-4 fw-semibold">📋 Mis tareas</h3>
+        <div className="col-12 col-md-9 col-lg-10 py-4 px-md-5 position-relative">
+          <h3 className="mb-4 fw-semibold">Mis tareas</h3>
+
           <div className="row g-4">
             {tareas.map((tarea) => (
               <div key={tarea.id_tarea} className="col-12 col-md-6">
@@ -94,7 +95,7 @@ function Tareas() {
           </div>
 
           <button
-            className="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 shadow-lg"
+            className="btn btn-glass-blue glass rounded-circle position-fixed bottom-0 end-0 m-4 shadow-lg"
             style={{ width: "60px", height: "60px", fontSize: "28px", zIndex: 1050 }}
             onClick={() => setMostrarModal(true)}
           >

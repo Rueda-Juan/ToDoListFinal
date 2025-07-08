@@ -104,35 +104,5 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// Registro
-// router.post("/register", async (req, res) => {
-//   try {
-//     const { correo, nombre, contraseña } = req.body;
-//     const id = await usuarioServicio.crearUsuario(correo, nombre, contraseña);
-//     res.status(201).json({ id, correo, nombre });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-
-// Login
-// router.post("/login", async (req, res) => {
-//   try {
-//     const { correo, contraseña } = req.body;
-//     const usuario = await usuarioServicio.obtenerUsuarioPorCorreo(correo);
-//     if (!usuario) return res.status(401).json({ error: "Correo o contraseña incorrectos" });
-
-//     // Aquí validación simple de contraseña (recomendado usar bcrypt para producción)
-//     if (usuario.contraseña !== contraseña) {
-//       return res.status(401).json({ error: "Correo o contraseña incorrectos" });
-//     }
-
-//     // No enviar contraseña al frontend
-//     const { contraseña: _, ...usuarioSinPass } = usuario;
-//     res.json(usuarioSinPass);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
 
 module.exports = router;

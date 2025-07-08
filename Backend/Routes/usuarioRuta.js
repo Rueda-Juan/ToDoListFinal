@@ -7,29 +7,6 @@ const {
   esContraseñaValida,
 } = require("../utils/validator");
 
-// EndPoints para Crear usuario
-router.post("/", async (req, res) => {
-  try {
-    const { correo, nombre, contraseña } = req.body;
-
-    if (!esCorreoValido(correo)) {
-      return res.status(400).json({ error: "Correo inválido." });
-    }
-
-    if (!esNombreValido(nombre)) {
-      return res.status(400).json({ error: "Nombre inválido. Solo letras y espacios." });
-    }
-
-    if (!esContraseñaValida(contraseña)) {
-      return res.status(400).json({ error: "Contraseña inválida. Debe tener al menos 4 caracteres." });
-    }
-
-    const id = await usuarioServicio.crearUsuario(correo, nombre, contraseña);
-    res.status(201).json({ id, correo, nombre });
-    } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 
 //EndPoints para  Registrar usuario
@@ -72,7 +49,7 @@ router.post("/login", async (req, res) => {
 
     const usuario = await usuarioServicio.obtenerUsuarioPorCorreo(correo);
     if (!usuario || usuario.contraseña !== contraseña) {
-      return res.status(401).json({ error: "Correo o contraseña incorrectos" });
+      return res.status(401).json({ error: "Credenciales invalidas" });
     }
 
     const { contraseña: _, ...usuarioSinPass } = usuario;

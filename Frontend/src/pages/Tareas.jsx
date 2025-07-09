@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TaskCard from "./TaskCard";
 import Sidebar from "./Sidebar";
 import CrearTareaModal from "./CrearTareaModal";
+import OpcionesModal from "./OpcionesModal";
 
 function Tareas() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
@@ -10,6 +11,7 @@ function Tareas() {
   const [titulo, setTitulo] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [mostrarOpciones, setMostrarOpciones] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,7 +80,8 @@ function Tareas() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <Sidebar usuario={usuario} cerrarSesion={cerrarSesion} />
+        <Sidebar usuario={usuario} cerrarSesion={cerrarSesion} setMostrarOpciones={setMostrarOpciones}
+        />
         <div className="col-12 col-md-9 col-lg-10 py-4 px-md-5 position-relative">
           <h3 className="mb-4 fw-semibold">Mis tareas</h3>
 
@@ -110,6 +113,11 @@ function Tareas() {
             setTitulo={setTitulo}
             descripcion={descripcion}
             setDescripcion={setDescripcion}
+          />
+          <OpcionesModal
+            mostrar={mostrarOpciones}
+            onClose={() => setMostrarOpciones(false)}
+            usuario={usuario}
           />
         </div>
       </div>

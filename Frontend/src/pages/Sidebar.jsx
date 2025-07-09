@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
-function Sidebar({ usuario, cerrarSesion }) {
+function Sidebar({ usuario, cerrarSesion, setMostrarOpciones }) {
   const navigate = useNavigate();
 
   return (
     <div className="col-12 col-md-3 col-lg-2 glass min-vh-100 p-3 d-flex flex-column justify-content-between">
       <div>
         <h5 className="mb-4 p-2">{usuario.nombre}</h5>
-        <button className="btn glass btn-glass-blue w-100 mb-2" onClick={() => navigate("/opciones")}>
+        
+        <button className="btn glass btn-glass-blue w-100 mb-2" onClick={() => setMostrarOpciones(true)}>
           Opciones
         </button>
       </div>

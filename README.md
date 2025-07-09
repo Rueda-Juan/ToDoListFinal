@@ -13,6 +13,8 @@
   - 📦 Visualizar todas las tareas
   - ✔️ Marcar tareas como "Completadas"
   - ✏️ Modificar Tareas existentes
+  - ✏️ Modificar Nombre de Usuario
+  - ✏️ Modificar Contraseña
   - 🎛️ Filtrar Tarea por condicion
   - ❌ Eliminar Tareas
   - 🚪 Cerrar Sesion
@@ -33,8 +35,8 @@
 TodoList/
 ├── Backend
 |   ├── servicios/                  
-|   │   ├──tareaservicio.js           
-|   │   └──usuarioServicio.js
+|   │   ├── tareaservicio.js           
+|   │   └── usuarioServicio.js
 |   ├── Routes/
 |   |   ├── tareaRuta.js
 |   |   └── usuarioRuta.js
@@ -50,10 +52,24 @@ TodoList/
 |   |   ├── sqlLoader.js
 |   |   └── validator.js
 |   └── Index.js
-├── Frontend
-|   ├──
-|
-
+├── Frontend/
+|   ├──src/
+|   |  ├── componets/
+|   |  |    ├── CrearTareaModal.jsx
+|   |  |    ├── EditarTareaModal.jsx
+|   |  |    ├── Login.jsx
+|   |  |    ├── OpcionesModal.jsx
+|   |  |    ├── Registes.jsx
+|   |  |    ├── RutaPrivada.jsx
+|   |  |    ├── Sidebar.jsx
+|   |  |    ├── Tareas.jsx
+|   |  |    └── TaskCard.jsx
+|   |  ├── App.css
+|   |  ├── App.jsx
+|   |  ├── Index.css
+|   |  └── main.jsx 
+|   └── index.html
+└── README.md 
 ```
 
 ## 🔧 Endpoints de Usuario
@@ -76,6 +92,11 @@ TodoList/
 | `PUT`    | `/:id`                      |                    |
 | `DELETE` | `/:id`                      |                    |
 
+
+## Diagrama Entidad Relacion de la base de datos
+<p align="center">
+  <img src="img/Diagrama entidad relacion BD usuario-tarea (1).png" alt="Captura de pantalla" width="500"/>
+</p>
 
 ## 📦 Instalación
   ##### 1. Clonar Repositorio

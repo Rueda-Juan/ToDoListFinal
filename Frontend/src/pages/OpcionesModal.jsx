@@ -74,52 +74,52 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
 
   //Funcion para eliminar la cuenta
   const handleEliminarCuenta = async () => {
-  if (!contraseñaEliminar) {
-    return mostrarMensaje("Por favor ingresá tu contraseña para confirmar.", "danger");
-  }
-
-  try {
-    const resLogin = await fetch("http://localhost:3001/usuarios/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ correo: usuario.correo, contraseña: contraseñaEliminar }),
-    });
-
-    if (!resLogin.ok) {
-      return mostrarMensaje("Contraseña incorrecta.", "danger");
+    if (!contraseñaEliminar) {
+      return mostrarMensaje("Por favor ingresá tu contraseña para confirmar.", "danger");
     }
 
-    // Mostrar alerta de confirmación
-    const result = await Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'Esta acción eliminará tu cuenta permanentemente.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#aaa',
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'No, cancelar',
-    });
-
-    if (result.isConfirmed) {
-      const res = await fetch(`http://localhost:3001/usuarios/${usuario.id_usuario}`, {
-        method: "DELETE",
+    try {
+      const resLogin = await fetch("http://localhost:3001/usuarios/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ correo: usuario.correo, contraseña: contraseñaEliminar }),
       });
 
-      if (res.ok) {
-        await Swal.fire('Cuenta eliminada', 'Tu cuenta fue eliminada exitosamente.', 'success');
-        localStorage.removeItem("usuario");
-        window.location.href = "/login";
-      } else {
-        const data = await res.json();
-        mostrarMensaje(data.error || "Error al eliminar cuenta.", "danger");
+      if (!resLogin.ok) {
+        return mostrarMensaje("Contraseña incorrecta.", "danger");
       }
-    }
 
-  } catch {
-    mostrarMensaje("Error de red.", "danger");
-  }
-};
+      // Mostrar alerta de confirmación
+      const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminará tu cuenta permanentemente.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#aaa',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'No, cancelar',
+      });
+
+      if (result.isConfirmed) {
+        const res = await fetch(`http://localhost:3001/usuarios/${usuario.id_usuario}`, {
+          method: "DELETE",
+        });
+
+        if (res.ok) {
+          await Swal.fire('Cuenta eliminada', 'Tu cuenta fue eliminada exitosamente.', 'success');
+          localStorage.removeItem("usuario");
+          window.location.href = "/login";
+        } else {
+          const data = await res.json();
+          mostrarMensaje(data.error || "Error al eliminar cuenta.", "danger");
+        }
+      }
+
+    } catch {
+      mostrarMensaje("Error de red.", "danger");
+    }
+  };
 
   return (
     <div className="modal d-block fade show" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
@@ -127,7 +127,7 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
         <div className="modal-content glass p-3">
           <div className="modal-header border-0">
             <h5 className="modal-title fw-bold">⚙️ Opciones de cuenta</h5>
-            <button className="btn-close" onClick={onClose}></button>
+            <button className="btn-close glass btn-glass-red" onClick={onClose}><i class="bi bi-x"></i></button>
           </div>
           <div className="modal-body" ref={modalBodyRef}>
             {mensaje && (
@@ -139,14 +139,14 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
             {/* Cambiar nombre */}
             <h6 className="fw-bold">📝 Cambiar nombre</h6>
             <div className="mb-3">
-              <input 
+              <input
                 type="text"
                 className="form-control glass"
                 value={nuevoNombre}
                 onChange={(e) => setNuevoNombre(e.target.value)}
               />
             </div>
-            <button onClick={handleActualizarNombre}  className="btn glass btn-glass-green w-100 mb-4">
+            <button onClick={handleActualizarNombre} className="btn glass btn-glass-green w-100 mb-4">
               Guardar nuevo nombre
             </button>
 
@@ -190,7 +190,7 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
                 placeholder="Confirmar contraseña"
                 value={contraseñaEliminar}
                 onChange={(e) => setContraseñaEliminar(e.target.value)}
-                
+
               />
             </div>
             <button onClick={handleEliminarCuenta} className="btn glass btn-glass-red w-100">

@@ -21,7 +21,7 @@ function TaskCard({ tarea, onToggle, onDelete }) {
 
         <div className="d-flex justify-content-between mt-auto">
           <button
-            className={`btn btn-sm ${tarea.completada ? "glass btn-glass-yellow" : "glass btn-glass-green"
+            className={`btn btn-sm ${tarea.completada ? "btn glass btn-glass-yellow" : "btn glass btn-glass-green"
               }`}
             onClick={() => onToggle(tarea.id_tarea, tarea.completada)}
           >

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Login() {
   const [correo, setCorreo] = useState("");
@@ -7,25 +8,36 @@ function Login() {
   const navigate = useNavigate();
 
   const manejarSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:3001/usuarios/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ correo, contraseña }),
-      });
+  e.preventDefault();
+  try {
+    const res = await fetch("http://localhost:3001/usuarios/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ correo, contraseña }),
+    });
 
-      const data = await res.json();
-      if (res.ok) {
-        localStorage.setItem("usuario", JSON.stringify(data));
-        navigate("/tareas");
-      } else {
-        alert(data.error || "Error al iniciar sesión");
-      }
-    } catch (err) {
-      alert("Error de red");
+    const data = await res.json();
+
+    if (res.ok) {
+      localStorage.setItem("usuario", JSON.stringify(data));
+      navigate("/tareas");
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al iniciar sesión',
+        text: data.error || 'Credenciales inválidas',
+        confirmButtonColor: '#3085d6',
+      });
     }
-  };
+  } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error de red',
+      text: 'No se pudo conectar al servidor.',
+      confirmButtonColor: '#3085d6',
+    });
+  }
+};
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">

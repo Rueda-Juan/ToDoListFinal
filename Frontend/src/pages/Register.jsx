@@ -65,11 +65,11 @@ function Register() {
               required
             />
           </div>
-          <button type="submit" className="btn btn-success w-100">Registrarse</button>
+          <button type="submit" className="btn glass btn-glass-blue btn-success w-100">Registrarse</button>
         </form>
         <p className="text-center mt-3 mb-0">
           ¿Ya tienes cuenta?{" "}
-          <button onClick={() => navigate("/login")} className="btn btn-link p-0 m-0 align-baseline">
+          <button onClick={() => navigate("/login")} className="btn btn-link glass p-0 m-0 align-baseline">
             Inicia sesión
           </button>
         </p>

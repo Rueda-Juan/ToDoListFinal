@@ -1,8 +1,8 @@
 function TaskCard({ tarea, onToggle, onDelete }) {
   return (
     <div
-      className="card h-100 shadow-sm border-0"
-      style={{ minWidth: "60vh" }} // más ancho
+      className="card glass h-100 shadow-sm border-0"
+      style={{ minWidth: "60vh" }}
     >
       <div className="card-body d-flex flex-column justify-content-between h-100">
         <div className="mb-3">
@@ -21,14 +21,14 @@ function TaskCard({ tarea, onToggle, onDelete }) {
 
         <div className="d-flex justify-content-between mt-auto">
           <button
-            className={`btn btn-sm ${tarea.completada ? "btn-warning" : "btn-success"
+            className={`btn btn-sm ${tarea.completada ? "glass btn-glass-yellow" : "glass btn-glass-green"
               }`}
             onClick={() => onToggle(tarea.id_tarea, tarea.completada)}
           >
             {tarea.completada ? "Desmarcar" : "Completar"}
           </button>
           <button
-            className="btn btn-sm btn-outline-danger"
+            className="btn glass btn-glass-red"
             onClick={() => onDelete(tarea.id_tarea)}
           >
             <i class="bi bi-trash"></i>

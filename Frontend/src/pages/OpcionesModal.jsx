@@ -125,7 +125,7 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
                 onChange={(e) => setNuevoNombre(e.target.value)}
               />
             </div>
-            <button onClick={handleActualizarNombre}  className="btn btn-glass-green w-100 mb-4">
+            <button onClick={handleActualizarNombre}  className="btn glass btn-glass-green w-100 mb-4">
               Guardar nuevo nombre
             </button>
 
@@ -151,7 +151,7 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
                 onChange={(e) => setNuevaContraseña(e.target.value)}
               />
             </div>
-            <button onClick={handleCambiarContraseña} className="btn btn-glass-yellow w-100 mb-4">
+            <button onClick={handleCambiarContraseña} className="btn glass btn-glass-yellow w-100 mb-4">
               Cambiar contraseña
             </button>
 
@@ -165,14 +165,14 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
             <div className="mb-2">
               <input
                 type="password"
-                className="form-control glass"
+                className="form-control glass "
                 placeholder="Confirmar contraseña"
                 value={contraseñaEliminar}
                 onChange={(e) => setContraseñaEliminar(e.target.value)}
                 
               />
             </div>
-            <button onClick={handleEliminarCuenta} className="btn btn-glass-red w-100">
+            <button onClick={handleEliminarCuenta} className="btn glass btn-glass-red w-100">
               Eliminar cuenta permanentemente
             </button>
           </div>

@@ -23,9 +23,14 @@ function TaskCard({ tarea, onToggle, onDelete, onModificar }) {
           </div>
 
           {tarea.descripcion && (
-            <p className="card-text small text-secondary mt-2">
-              {tarea.descripcion}
-            </p>
+            <div
+              className="card-text small text-secondary mt-2 overflow-auto p-2 rounded text-light"
+              style={{
+                maxHeight: "100px",
+              }}
+            >
+  {tarea.descripcion}
+</div>
           )}
         </div>
 

@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import Swal from 'sweetalert2';
 
 
 function OpcionesModal({ mostrar, onClose, usuario }) {
@@ -70,6 +71,8 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
     }
   };
 
+
+  //Funcion para eliminar la cuenta
   const handleEliminarCuenta = async () => {
   if (!contraseñaEliminar) {
     return mostrarMensaje("Por favor ingresá tu contraseña para confirmar.", "danger");
@@ -82,19 +85,37 @@ function OpcionesModal({ mostrar, onClose, usuario }) {
       body: JSON.stringify({ correo: usuario.correo, contraseña: contraseñaEliminar }),
     });
 
-    if (!resLogin.ok) return mostrarMensaje("Contraseña incorrecta.", "danger");
+    if (!resLogin.ok) {
+      return mostrarMensaje("Contraseña incorrecta.", "danger");
+    }
 
-    const res = await fetch(`http://localhost:3001/usuarios/${usuario.id_usuario}`, {
-      method: "DELETE",
+    // Mostrar alerta de confirmación
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción eliminará tu cuenta permanentemente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
     });
 
-    if (res.ok) {
-      localStorage.removeItem("usuario");
-      window.location.href = "/login";
-    } else {
-      const data = await res.json();
-      mostrarMensaje(data.error || "Error al eliminar cuenta.", "danger");
+    if (result.isConfirmed) {
+      const res = await fetch(`http://localhost:3001/usuarios/${usuario.id_usuario}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        await Swal.fire('Cuenta eliminada', 'Tu cuenta fue eliminada exitosamente.', 'success');
+        localStorage.removeItem("usuario");
+        window.location.href = "/login";
+      } else {
+        const data = await res.json();
+        mostrarMensaje(data.error || "Error al eliminar cuenta.", "danger");
+      }
     }
+
   } catch {
     mostrarMensaje("Error de red.", "danger");
   }

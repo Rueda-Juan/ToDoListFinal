@@ -23,7 +23,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "sweetalert2": "^11.22.2"
   },
   "devDependencies": {
     "concurrently": "^9.2.0",

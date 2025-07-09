@@ -29,14 +29,14 @@ function Register() {
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
+      <div className="card p-4 glass" style={{ maxWidth: "400px", width: "100%" }}>
         <h2 className="text-center mb-4">Registrarse</h2>
         <form onSubmit={manejarSubmit}>
           <div className="mb-3">
             <label className="form-label">Correo electrónico</label>
             <input
               type="email"
-              className="form-control"
+              className="form-control glass"
               placeholder="correo@ejemplo.com"
               value={correo}
               onChange={(e) => setCorreo(e.target.value)}
@@ -47,7 +47,7 @@ function Register() {
             <label className="form-label">Nombre</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control glass"
               placeholder="Tu nombre"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
@@ -58,7 +58,7 @@ function Register() {
             <label className="form-label">Contraseña</label>
             <input
               type="password"
-              className="form-control"
+              className="form-control glass"
               placeholder="Contraseña"
               value={contraseña}
               onChange={(e) => setContraseña(e.target.value)}
@@ -69,7 +69,7 @@ function Register() {
         </form>
         <p className="text-center mt-3 mb-0">
           ¿Ya tienes cuenta?{" "}
-          <button onClick={() => navigate("/login")} className="btn btn-link glass p-0 m-0 align-baseline">
+          <button onClick={() => navigate("/login")} className="btn glass btn-glass-blue p-1 m-0 align-baseline">
             Inicia sesión
           </button>
         </p>

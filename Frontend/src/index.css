@@ -9,6 +9,7 @@
   --text-color-dark: #000000;
 }
 
+
 .glass {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
@@ -24,9 +25,19 @@
 .btn.glass {
   background: none;
   border: none;
+  transition:
+    background 0.5s ease 0s,
+    box-shadow 0.5s ease 0.5s;
 }
 
-.btn-glass-red:hover {
+.btn.glass:hover {
+  transition:
+    background 0.5s ease 0s,
+    box-shadow 0.5s ease 0.5s;
+}
+
+.btn-glass-red.glass:hover {
+  transition: all 1s ease;
   background: rgba(255, 0, 0, 0.25);
   box-shadow:
     inset 0 6px 8px rgba(255, 255, 255, 0.3),
@@ -34,7 +45,8 @@
     var(--glass-shadow);
 }
 
-.btn-glass-green:hover {
+.btn-glass-green.glass:hover {
+  transition: all 1s ease;
   background: rgba(0, 255, 0, 0.25);
   box-shadow:
     inset 0 6px 8px rgba(255, 255, 255, 0.3),
@@ -42,7 +54,8 @@
     var(--glass-shadow);
 }
 
-.btn-glass-blue:hover {
+.btn-glass-blue.glass:hover {
+  transition: all 1s ease;
   background: rgba(0, 128, 255, 0.25);
   box-shadow:
     inset 0 6px 8px rgba(255, 255, 255, 0.3),
@@ -50,7 +63,8 @@
     var(--glass-shadow);
 }
 
-.btn-glass-yellow:hover {
+.btn-glass-yellow.glass:hover {
+  transition: all 1s ease;
   background: rgba(255, 255, 128, 0.25);
   box-shadow:
     inset 0 6px 8px rgba(255, 255, 255, 0.3),

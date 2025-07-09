@@ -1,0 +1,35 @@
+{
+  "name": "todolistfinal",
+  "version": "1.0.0",
+  "description": "proyecto final de el curso cilsa fullstacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "node Backend/bd/setup.js",
+    "dev": "nodemon Backend/index.js",
+    "frontend": "cd Frontend && npm install && npm run dev",
+    "start": "concurrently \"npm run dev\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rueda-Juan/ToDoListFinal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rueda-Juan/ToDoListFinal/issues"
+  },
+  "homepage": "https://github.com/Rueda-Juan/ToDoListFinal#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7",
+    "sweetalert2": "^11.22.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "jest": "^30.0.4",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.3"
+  }
+}

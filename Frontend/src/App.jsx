@@ -2,11 +2,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Tareas from "./pages/Tareas";
-// import Opciones from "./pages/Opciones"
+import RutaPrivada from "./pages/RutaPrivada";
+
 
 function App() {
-  const usuario = JSON.parse(localStorage.getItem("usuario"));
-
   return (
     <Router>
       <Routes>
@@ -14,9 +13,12 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route
           path="/tareas"
-          element={usuario ? <Tareas /> : <Navigate to="/login" replace />}
+          element={
+            <RutaPrivada>
+              <Tareas />
+            </RutaPrivada>
+          }
         />
-        {/* <Route path="/opciones" element={usuario ? <Opciones /> : <Navigate to="/login" replace />} /> */}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

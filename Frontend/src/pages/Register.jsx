@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Register() {
   const [correo, setCorreo] = useState("");
@@ -8,24 +9,39 @@ function Register() {
   const navigate = useNavigate();
 
   const manejarSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:3001/usuarios/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ correo, nombre, contraseña }),
+  e.preventDefault();
+  try {
+    const res = await fetch("http://localhost:3001/usuarios/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ correo, nombre, contraseña }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      await Swal.fire({
+        icon: 'success',
+        title: '¡Registro exitoso!',
+        text: 'Ahora podés iniciar sesión.',
+        confirmButtonColor: '#3085d6',
       });
-      const data = await res.json();
-      if (res.ok) {
-        alert("Registro exitoso, ahora inicia sesión");
-        navigate("/login");
-      } else {
-        alert(data.error || "Error al registrar usuario");
-      }
-    } catch (err) {
-      alert("Error de red");
+      navigate("/login");
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al registrar',
+        text: data.error || "Ocurrió un error al registrar el usuario.",
+        confirmButtonColor: '#d33',
+      });
     }
-  };
+  } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error de red',
+      text: 'No se pudo conectar con el servidor.',
+      confirmButtonColor: '#d33',
+    });
+  }
+};
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">

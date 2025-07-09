@@ -29,7 +29,7 @@ function Login() {
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="card glass p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
+      <div className="card glass p-4 " style={{ maxWidth: "400px", width: "100%" }}>
         <h2 className="text-center mb-4">Iniciar Sesión</h2>
         <form onSubmit={manejarSubmit}>
           <div className="mb-3">

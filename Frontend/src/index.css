@@ -1,9 +1,10 @@
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.3);
-  --glass-border: rgba(255, 255, 255, 0.25);
-  --glass-blur: blur(10px);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: none;
+  --glass-blur: blur(12px);
   --glass-radius: 12px;
   --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --glass-inner: inset 0 6px 8px rgba(255, 255, 255, 0.3), inset 0 0 17px rgba(254, 254, 254, 0.05), inset 0 -1px 5px rgba(0, 0, 0, 0.25);
   --text-color-light: #ffffff;
   --text-color-dark: #000000;
 }
@@ -14,40 +15,48 @@
   -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--glass-radius);
   border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+  box-shadow: var(--glass-inner), var(--glass-shadow);
   color: var(--text-color-light);
   transition: all 0.3s ease;
   z-index: 4;
+  overflow: visible;
 }
 
-.btn-glass {
-  @apply glass;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+.btn.glass {
+  background: none;
   border: none;
-  color: var(--text-color-light);
-  background: var(--glass-bg);
 }
-
-.btn-glass:hover {
-  transform: scale(1.02);
-}
-
 
 .btn-glass-red:hover {
   background: rgba(255, 0, 0, 0.25);
-  border-color: rgba(255, 0, 0, 0.4);
+  box-shadow:
+    var(--btn-inner),
+    0 0 12px rgba(255, 0, 0, 0.6),
+    var(--glass-shadow);
 }
 
 .btn-glass-green:hover {
   background: rgba(0, 255, 0, 0.25);
-  border-color: rgba(0, 255, 0, 0.4);
+  box-shadow:
+    var(--btn-inner),
+    0 0 12px rgba(0, 255, 0, 0.6),
+    var(--glass-shadow);
 }
 
 .btn-glass-blue:hover {
   background: rgba(0, 128, 255, 0.25);
-  border-color: rgba(0, 128, 255, 0.4);
+  box-shadow:
+    var(--btn-inner),
+    0 0 12px rgba(0, 128, 255, 0.6),
+    var(--glass-shadow);
+}
+
+.btn-glass-yellow:hover {
+  background: rgba(255, 255, 128, 0.25);
+  box-shadow:
+    var(--btn-inner),
+    0 0 12px rgba(255, 255, 128, 0.6),
+    var(--glass-shadow);
 }
 
 input.glass,
@@ -72,31 +81,44 @@ textarea.glass::placeholder {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
   border-radius: var(--glass-radius);
-  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
   color: var(--text-color-light);
 }
 
 body {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  background: none;
   color: var(--text-color-light);
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
+html {
+  --s: 140px;
+  --c1: #AB3E5B;
+  --c2: #FFBE40;
 
-  50% {
-    background-position: 100% 50%;
-  }
+  --_g:
+    #0000 25%, #0008 47%, var(--c1) 53% 147%, var(--c2) 153% 247%,
+    var(--c1) 253% 347%, var(--c2) 353% 447%, var(--c1) 453% 547%, #0008 553%, #0000 575%;
+  --_s: calc(25%/3) calc(25%/4) at 50%;
+  background:
+    radial-gradient(var(--_s) 100%, var(--_g)),
+    radial-gradient(var(--_s) 100%, var(--_g)) calc(var(--s)/2) calc(3*var(--s)/4),
+    radial-gradient(var(--_s) 0, var(--_g)) calc(var(--s)/2) 0,
+    radial-gradient(var(--_s) 0, var(--_g)) 0 calc(3*var(--s)/4),
+    repeating-linear-gradient(90deg, #ACCEC0 calc(25%/-6) calc(25%/6), #61A6AB 0 calc(25%/2));
+  background-size: var(--s) calc(3*var(--s)/2);
+  animation: m 10s infinite linear;
+}
 
-  100% {
-    background-position: 0% 50%;
+@keyframes m {
+  to {
+    background-position:
+      var(--s) 0,
+      calc(var(--s)/-2) calc(3*var(--s)/4),
+      calc(3*var(--s)/2) 0,
+      calc(-1*var(--s)) calc(3*var(--s)/4),
+      0 0
   }
 }

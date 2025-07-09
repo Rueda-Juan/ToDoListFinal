@@ -1,7 +1,7 @@
 function TaskCard({ tarea, onToggle, onDelete }) {
   return (
     <div
-      className="card glass h-100 shadow-sm border-0"
+      className="card glass h-100"
       style={{ minWidth: "60vh" }}
     >
       <div className="card-body d-flex flex-column justify-content-between h-100">

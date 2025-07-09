@@ -95,7 +95,7 @@ function Tareas() {
           </div>
 
           <button
-            className="btn btn-glass-blue glass rounded-circle position-fixed bottom-0 end-0 m-4 shadow-lg"
+            className="btn btn-glass-blue glass rounded-circle position-fixed bottom-0 end-0 m-4"
             style={{ width: "60px", height: "60px", fontSize: "28px", zIndex: 1050 }}
             onClick={() => setMostrarModal(true)}
           >

@@ -12,8 +12,15 @@ function TaskCard({ tarea, onToggle, onDelete, onModificar }) {
         <div className="mb-3">
           <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
             <h5
-              className={`card-title fw-semibold mb-0 ${tarea.completada ? "text-decoration-line-through text-muted" : ""
+              className={`card-title fw-semibold mb-0 text-truncate ${tarea.completada ? "text-decoration-line-through text-muted" : ""
                 }`}
+              title={tarea.titulo}
+              style={{
+                maxWidth: "100%",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis"
+              }}
             >
               {tarea.titulo}
             </h5>
@@ -29,8 +36,8 @@ function TaskCard({ tarea, onToggle, onDelete, onModificar }) {
                 maxHeight: "100px",
               }}
             >
-  {tarea.descripcion}
-</div>
+              {tarea.descripcion}
+            </div>
           )}
         </div>
 
@@ -44,7 +51,7 @@ function TaskCard({ tarea, onToggle, onDelete, onModificar }) {
           </button>
 
           <button className="btn btn-sm glass btn-glass-yellow" onClick={() => onModificar(tarea)}>
-            Modificar <i className="bi bi-pencil"></i>
+            <i className="bi bi-pencil"></i>
           </button>
 
           <button className="btn btn-sm glass btn-glass-red" onClick={() => onDelete(tarea.id_tarea)}>

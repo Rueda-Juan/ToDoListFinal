@@ -7,6 +7,7 @@ import OpcionesModal from "./OpcionesModal";
 import EditarTareaModal from "./EditarTareaModal";
 import Swal from 'sweetalert2';
 
+
 function Tareas() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const [tareas, setTareas] = useState([]);
@@ -18,6 +19,7 @@ function Tareas() {
   const [tareaAEditar, setTareaAEditar] = useState(null);
   const [esCelular, setEsCelular] = useState(window.innerWidth < 768);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
 
   const navigate = useNavigate();
 
@@ -149,7 +151,9 @@ function Tareas() {
       navigate('/login');
     }
   };
-
+  const tareasFiltradas = tareas.filter((tarea) =>
+    tarea.titulo.toLowerCase().includes(busqueda.toLowerCase())
+    );
   return (
     <div className="container-fluid">
       <div className="row">
@@ -200,18 +204,26 @@ function Tareas() {
         {/* Contenido principal */}
         <div className={`py-4 px-md-5 ${esCelular ? "col-12" : "col-md-9 col-lg-10"} position-relative`}>
           {!esCelular && <h3 className="mb-4 fw-semibold">Mis tareas</h3>}
-
+          <div className="mb-4">
+            <input
+              type="text"
+              className="form-control glass"
+              placeholder="Buscar por título..."
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+            />
+          </div>
           <div className="row g-4">
-            {tareas.map((tarea) => (
-              <div key={tarea.id_tarea} className="col-12 col-md-6 col-lg-4">
-                <TaskCard
-                  tarea={tarea}
-                  onToggle={marcarComoCompletada}
-                  onDelete={eliminarTarea}
-                  onModificar={abrirModalEdicion}
-                />
-              </div>
-            ))}
+           {tareasFiltradas.map((tarea) => (
+  <div key={tarea.id_tarea} className="col-12 col-md-6 col-lg-4">
+    <TaskCard
+      tarea={tarea}
+      onToggle={marcarComoCompletada}
+      onDelete={eliminarTarea}
+      onModificar={abrirModalEdicion}
+    />
+  </div>
+))}
           </div>
 
           {/* Botón flotante */}

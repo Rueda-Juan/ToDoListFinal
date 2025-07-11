@@ -154,6 +154,8 @@ function Tareas() {
   const tareasFiltradas = tareas.filter((tarea) =>
     tarea.titulo.toLowerCase().includes(busqueda.toLowerCase())
     );
+
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -215,15 +217,15 @@ function Tareas() {
           </div>
           <div className="row g-4">
            {tareasFiltradas.map((tarea) => (
-  <div key={tarea.id_tarea} className="col-12 col-md-6 col-lg-4">
-    <TaskCard
-      tarea={tarea}
-      onToggle={marcarComoCompletada}
-      onDelete={eliminarTarea}
-      onModificar={abrirModalEdicion}
-    />
-  </div>
-))}
+            <div key={tarea.id_tarea} className="col-12 col-md-6 col-lg-4">
+              <TaskCard
+                tarea={tarea}
+                onToggle={marcarComoCompletada}
+                onDelete={eliminarTarea}
+                onModificar={abrirModalEdicion}
+              />
+            </div>
+          ))}
           </div>
 
           {/* Botón flotante */}

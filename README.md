@@ -40,22 +40,22 @@
 TodoList/
 ├── Backend
 |   ├── servicios/                  
-|   │   ├── tareaservicio.js           
-|   │   └── usuarioServicio.js
+|   │   ├── tareaservicio.js             Modulo para gestionar operaciones CRUD en Tarea
+|   │   └── usuarioServicio.js           Modulo para gestionar operaciones CRUD en Usuario
 |   ├── Routes/
-|   |   ├── tareaRuta.js
-|   |   └── usuarioRuta.js
+|   |   ├── tareaRuta.js                 Endpoint de Tarea
+|   |   └── usuarioRuta.js               Endpoint de Usuario
 |   ├── consultas/                     
-|   │   ├── tarea.sql             
-|   │   └── usuario.sql
+|   │   ├── tarea.sql                    Consutas SQL de Tarea
+|   │   └── usuario.sql                  Consultas SQL de Usuario
 |   ├── Test/                     
-|   │   ├── tareaRuta.test.js             
-|   │   ├── tareaServicio.test.js
-|   |   ├── usuarioRuta.test.js
-|   |   └── usuarioServicio.test.js      
+|   │   ├── tareaRuta.test.js            Test de los endpoint de Tarea
+|   │   ├── tareaServicio.test.js        Test del modulo CRUD de Tarea
+|   |   ├── usuarioRuta.test.js          Test de los endpoints de Usuario
+|   |   └── usuarioServicio.test.js      Test del modulo CRUD de Usuario
 |   └── Utils/                    
-|   |   ├── sqlLoader.js
-|   |   └── validator.js
+|   |   ├── sqlLoader.js                 Busca la consulta SQL pedida
+|   |   └── validator.js                 Contiene las validaciones de entrada de datos
 |   └── Index.js
 ├── Frontend/
 |   ├──src/

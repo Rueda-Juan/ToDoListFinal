@@ -34,6 +34,7 @@
 - **Control de versiones:** Git
 - **Alertas Modales** SweetAlert2
 
+hola
 
 ## 📂 Estructura general
 ```text
